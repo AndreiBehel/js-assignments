@@ -178,7 +178,7 @@ function extractEmails(str) {
 }
 
 /**
- * Returns the string representation of rectangle with specified width and height
+ * Returns the string representation of  rectangleangle with specified width and height
  * using pseudograhic chars
  *
  * @param {number} width
@@ -201,7 +201,10 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+    var middle = '│' + ' '.repeat(width - 2) + '│\n';
+    return '┌' + '─'.repeat(width - 2) + '┐\n' +
+        middle.repeat(height - 2) +
+        '└' + '─'.repeat(width - 2) + '┘\n';
 }
 
 
@@ -221,7 +224,18 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+    var origAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var cipherAlphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+    var result = '';
+    for(var i = 0; i < str.length; i++) {
+        var index = origAlphabet.indexOf(str.charAt(i));
+        if(index < 0) {
+            result += str.charAt(i);
+        } else {
+            result += cipherAlphabet.charAt(index);
+        }
+    }
+    return result;
 }
 
 /**
@@ -267,7 +281,41 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    //shorter and unreadable solution for the task
+    //var code = parseInt(value); //get the numeric value from card if it could be
+    //code = --code ? code : value[0] == 'J' ? 10 : value[0] == 'Q' ? 11 : value[0] == 'K' ? 12 : 0;
+    //code = value[lastEl] == '♣'? code : value[lastEl] == '♦' ? code + 13 :  value[lastEl] == '♥' ? code + 26 : code + 39;
+    var code = 0;
+    var lastEl = value.length - 1;
+    switch (value[0]) {
+        case 'A':
+            break;
+        case 'J':
+            code = 10;
+            break;
+        case 'Q':
+            code = 11;
+            break;
+        case 'K':
+            code = 12;
+            break;
+        default:
+            code = parseInt(value);
+            code--;
+    }
+    switch (value[lastEl]) {
+        case '♦':
+            code += 13;
+            break;
+        case '♥':
+            code += 26;
+            break;
+        case '♠':
+            code += 39;
+            break;
+        default:
+    }
+    return code;
 }
 
 

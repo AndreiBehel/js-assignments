@@ -566,6 +566,12 @@ function distinct(arr) {
  */
 function group(array, keySelector, valueSelector) {
    throw new Error('Not implemented');
+    /*var state = array.map(function (value) {
+        return [keySelector(value), valueSelector(value)];
+    }).reduce(function (accum, value) {
+
+    }, new Array());
+    return new Map(state);*/
 }
 
 
@@ -600,7 +606,9 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+    return indexes.reduce(function (accum, value) {
+        return accum[value];
+    }, arr);
 }
 
 
@@ -623,13 +631,13 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+    //throw new Error('Not implemented');
     var middle = arr.length / 2;
-   if(arr.length % 2 == 0) {
+   if(arr.length % 2 == 0 || arr.length == 1) {
       return [].concat(arr.slice(-middle), arr.slice(0, middle));
    } else {
        middle = Math.floor(middle);
-       return [].concat(arr.slice(-middle), arr[middle + 1] ,arr.slice(0, middle));
+       return [].concat(arr.slice(-middle), arr[middle] ,arr.slice(0, middle));
    }
 }
 

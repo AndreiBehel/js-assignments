@@ -565,13 +565,24 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
-    /*var state = array.map(function (value) {
-        return [keySelector(value), valueSelector(value)];
+    //get array of unique states
+   var states = array.map(function (value) {
+        return keySelector(value);
     }).reduce(function (accum, value) {
-
-    }, new Array());
-    return new Map(state);*/
+        if(accum.indexOf(value) < 0) {
+            accum.push(value);
+        }
+        return accum;
+    }, Array());
+    return new Map(states.map(function (value) {
+        //get result in form [state, [City1,...]] for each element in array 'states'
+        return [value, array.reduce(function (accum, v) {
+            if(value == keySelector(v)) {
+                accum.push(valueSelector(v));
+            }
+            return accum;
+        }, Array())];
+    }))
 }
 
 

@@ -311,7 +311,23 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    var check = 0, digit = 0, even = false;
+    ccn = ccn.toString();
+
+    for (var n = ccn.length - 1; n >= 0; n--) {
+        //get the digit
+        digit = +ccn.charAt(n);
+
+        if (even) {
+            //double the digit and find sum of the digits
+            if ((digit *= 2) > 9)
+                digit -= 9;
+        }
+
+        check += digit;
+        even = !even;
+    }
+    return (check % 10) == 0;
 }
 
 
@@ -504,7 +520,26 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    throw new Error('Not implemented');
+    var res = '';
+    pathes = pathes.map(function (val) {
+        return val.split('/');
+    });
+
+    var flag = true;
+    for(var i = 0; i < pathes[0].length; i++) {
+        for (var  j = 0; j < pathes.length; j++) {
+            if(pathes[0][i] != pathes[j][i]) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            res = res + pathes[0][i] + '/';
+        } else {
+            break;
+        }
+    }
+    return res;
 }
 
 

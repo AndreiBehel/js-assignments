@@ -46,7 +46,7 @@ function findStringInSnakingPuzzle(puzzle, searchStr) {
  */
 function* getPermutations(chars) {
     //Heap's algorithm implementation
-    function *permute(a, n = a.length) {
+    function *permute(a, n) {
         if (n <= 1)
             yield a.slice().join('');
         else
@@ -56,7 +56,7 @@ function* getPermutations(chars) {
                 [a[n-1], a[j]] = [a[j], a[n-1]];
             }
     }
-    yield *permute(chars.split(''));
+    yield *permute(chars.split(''), chars.length);
 }
 
 

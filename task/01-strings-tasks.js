@@ -281,10 +281,6 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    //shorter and unreadable solution for the task
-    //var code = parseInt(value); //get the numeric value from card if it could be
-    //code = --code ? code : value[0] == 'J' ? 10 : value[0] == 'Q' ? 11 : value[0] == 'K' ? 12 : 0;
-    //code = value[lastEl] == '♣'? code : value[lastEl] == '♦' ? code + 13 :  value[lastEl] == '♥' ? code + 26 : code + 39;
     var code = 0;
     var lastEl = value.length - 1;
     switch (value[0]) {

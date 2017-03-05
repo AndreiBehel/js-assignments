@@ -34,7 +34,44 @@
  *
  */
 function parseBankAccount(bankAccount) {
-    throw new Error('Not implemented');
+    let arr = bankAccount.split('\n');
+    let accNum = 0;
+    let numOfDigits = 9;
+    for (let k = 0; k < numOfDigits; k++) {
+        let digit;
+        let i = k * 3;
+        if(arr[2][i + 2] == ' ') {
+            digit = 2;
+        } else if(arr[1][i + 2] == ' ') {
+            if (arr[2][i] == ' ') {
+                digit = 5;
+            } else {
+                digit = 6;
+            }
+        }  else if(arr[2][i] == '|') {
+            if (arr[1][i + 1] == ' ') {
+                digit = 0;
+            } else {
+                digit = 8;
+            }
+        } else if(arr[0][i + 1] == ' ') {
+            if (arr[1][i + 1] == ' ') {
+                digit = 1;
+            } else {
+                digit = 4;
+            }
+        } else if(arr[1][i + 1] == '_') {
+            if (arr[1][i] == '|') {
+                digit = 9;
+            } else {
+                digit = 3;
+            }
+        } else {
+            digit = 7;
+        }
+        accNum += digit * Math.pow(10, numOfDigits - k - 1);
+    }
+    return accNum;
 }
 
 
@@ -63,7 +100,17 @@ function parseBankAccount(bankAccount) {
  *                                                                                                'characters.'
  */
 function* wrapText(text, columns) {
-    throw new Error('Not implemented');
+    let arr = text.split(' ');
+    let str = '';
+    while (arr.length) {
+        if(str.length + arr[0].length + 1 <= columns) {
+            str += str.length ? ' ' + arr.shift() : arr.shift();
+        } else {
+            yield str;
+            str = '';
+        }
+    }
+    yield str;
 }
 
 
@@ -135,6 +182,7 @@ function getPokerHandRank(hand) {
  *    '+-------------+\n'
  */
 function* getFigureRectangles(figure) {
+    let arr = figure.split('\n');
    throw new Error('Not implemented');
 }
 

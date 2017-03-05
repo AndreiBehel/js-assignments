@@ -45,7 +45,18 @@ function findStringInSnakingPuzzle(puzzle, searchStr) {
  *    'abc' => 'abc','acb','bac','bca','cab','cba'
  */
 function* getPermutations(chars) {
-    throw new Error('Not implemented');
+    //Heap's algorithm implementation
+    function *permute(a, n = a.length) {
+        if (n <= 1)
+            yield a.slice().join('');
+        else
+            for (let i = 0; i < n; i++) {
+                yield *permute(a, n - 1);
+                const j = n % 2 ? 0 : i;
+                [a[n-1], a[j]] = [a[j], a[n-1]];
+            }
+    }
+    yield *permute(chars.split(''));
 }
 
 
@@ -65,7 +76,12 @@ function* getPermutations(chars) {
  *    [ 1, 6, 5, 10, 8, 7 ] => 18  (buy at 1,6,5 and sell all at 10)
  */
 function getMostProfitFromStockQuotes(quotes) {
-    throw new Error('Not implemented');
+    let profitArray = quotes.map((currentValue, index) =>
+        (quotes.slice(index, quotes.length)
+                .sort((a, b) => b - a)[0] - currentValue)
+    );
+
+    return profitArray.reduce((accum, value) => accum += value);
 }
 
 

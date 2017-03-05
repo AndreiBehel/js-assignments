@@ -56,8 +56,8 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    var result = 1;
-    for (var i = 2; i <= n; i++) {
+    var i, result = 1;
+    for (i = 2; i <= n; i++) {
         result *= i;
     }
     return result;
@@ -77,8 +77,9 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-    var sum = 0;
-    for(var i = n1; i <= n2; i++) {
+    var i, sum = 0;
+
+    for(i = n1; i <= n2; i++) {
         sum += i;
     }
     return sum;
@@ -196,7 +197,8 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    for(var i = 0; i < str.length; i++) {
+    var i;
+    for(i = 0; i < str.length; i++) {
         if(str.lastIndexOf(str[i]) == i && str.indexOf(str[i]) == i) {
             return str[i];
         }
@@ -260,8 +262,8 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    var reverseStr = '';
-    for(var i = str.length - 1; i >= 0; i--) {
+    var i, reverseStr = '';
+    for(i = str.length - 1; i >= 0; i--) {
         reverseStr += str[i];
     }
     return reverseStr;
@@ -282,8 +284,8 @@ function reverseString(str) {
  */
 function reverseInteger(num) {
     var str = num.toString();
-    var reverseStr = '';
-    for(var i = str.length - 1; i >= 0; i--) {
+    var i, reverseStr = '';
+    for(i = str.length - 1; i >= 0; i--) {
         reverseStr += str[i];
     }
     return parseInt(reverseStr);
@@ -311,10 +313,10 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    var check = 0, digit = 0, even = false;
+    var n, check = 0, digit = 0, even = false;
     ccn = ccn.toString();
 
-    for (var n = ccn.length - 1; n >= 0; n--) {
+    for (n = ccn.length - 1; n >= 0; n--) {
         //get the digit
         digit = +ccn.charAt(n);
 
@@ -347,8 +349,9 @@ function isCreditCardNumber(ccn) {
  */
 function getDigitalRoot(num) {
     var str = num.toString();
-    var sum = 0;
-    for(var i = 0; i < str.length; i++) {
+    var i, sum = 0;
+
+    for(i = 0; i < str.length; i++) {
         sum += +str[i];
     }
     if(sum > 9) {
@@ -384,8 +387,9 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    var stack = [];
-    for (var i = 0; i < str.length; i++) {
+    var i, stack = [];
+
+    for (i = 0; i < str.length; i++) {
         if(str[i] == '[' || str[i] == '(' || str[i] == '{' || str[i] == '<') {
             stack.push(str[i]);
         } else {
@@ -526,7 +530,8 @@ function getCommonDirectoryPath(pathes) {
     });
 
     var flag = true;
-    for(var i = 0; i < pathes[0].length; i++) {
+    var i;
+    for(i = 0; i < pathes[0].length; i++) {
         for (var  j = 0; j < pathes.length; j++) {
             if(pathes[0][i] != pathes[j][i]) {
                 flag = false;
@@ -562,8 +567,8 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-    var result = [];
-    for (var i = 0; i < m1.length; i++) {
+    var i, result = [];
+    for (i = 0; i < m1.length; i++) {
         var row = [];
         for (var j = 0; j < m2[0].length; j++) {
             var tm = 0;
@@ -609,12 +614,13 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-    for(var i = 0; i < position.length; i++) {
+    var i;
+    for(i = 0; i < position.length; i++) {
         if(position[i][0] && position[i][0] == position[i][1] && position[i][0] == position[i][2]) {
             return position[i][0];
         }
     }
-    for(var i = 0; i < position.length; i++) {
+    for(i = 0; i < position.length; i++) {
         if(position[0][i]&& position[0][i] == position[1][i] && position[0][i] == position[2][i]) {
             return position[0][i];
         }
